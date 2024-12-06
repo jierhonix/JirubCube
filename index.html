@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jirub 3D Cube</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 70px; /* Add space between text and cube */
+    }
+
+    .perspective-wrapper {
+      perspective: 300px; /* Add perspective here to bring back depth */
+      transition: transform 0.3s ease; /* Smooth scaling effect */
+    }
+    .perspective-wrapper:hover {
+      transform: scale(1.2); /* Enlarges the box */
+    }
+
+    .cube {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      text-align: center;
+      transform-style: preserve-3d;
+      animation: rotateCube 6s infinite ease-in-out;
+    }
+
+    .cube div {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 157, 255, 0.7);
+      border: 2px solid rgb(0, 0, 0);
+      color: black;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .perspective-wrapper:hover .cube div {
+      background: rgba(255, 80, 80, 0.8); /* New RGBA color */
+      color: white;
+    }
+
+    .front  { transform: translateZ(50px); }
+    .back   { transform: rotateY(180deg) translateZ(50px); }
+    .left   { transform: rotateY(-90deg) translateZ(50px); }
+    .right  { transform: rotateY(90deg) translateZ(50px); }
+    .top    { transform: rotateX(90deg) translateZ(50px); }
+    .bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+    @keyframes rotateCube {
+      0% {transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);}
+      20% {transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg);}
+      40% {transform: rotateX(225deg) rotateY(0deg) rotateZ(45deg);}
+      60% {transform: rotateX(225deg) rotateY(0deg) rotateZ(225deg);}
+      80% {transform: rotateX(405deg) rotateY(0deg) rotateZ(225deg);}
+      100% {transform: rotateX(360deg) rotateY(0deg) rotateZ(360deg);}
+    }
+    /*from { transform: rotateX(0deg) rotateY(0deg); }
+      to   { transform: rotateX(360deg) rotateY(360deg); }*/
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div>
+      <h2>Eyy, this is 3D!</h2>
+      <p>by Jierhonix</p>
+    </div>
+    <div class="perspective-wrapper">
+      <div class="cube">
+        <div class="front">Front</div>
+        <div class="back">Back</div>
+        <div class="left">Left</div>
+        <div class="right">Right</div>
+        <div class="top">Top</div>
+        <div class="bottom">Bottom</div>
+      </div>
+    </div>
+    <div>
+      <p>Tap the 3D 😏</p>
+    </div>
+  </div>
+</body>
+</html>
